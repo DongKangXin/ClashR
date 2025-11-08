@@ -6,23 +6,41 @@
 //
 
 import SwiftUI
+internal import CoreLocation
 
 /// 设置页面
 struct SettingsView: View {
     @EnvironmentObject var clashService: ClashService
-    @AppStorage("autoConnect") private var autoConnect = false
-    @AppStorage("darkMode") private var darkMode = false
+    @EnvironmentObject var vpnManager: VPNManager
+    @EnvironmentObject var settings: Settings
+    @EnvironmentObject var clashActivityManager: ClashActivityManager
     @State private var showingAbout = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 // 代理设置
                 Section("代理设置") {
-                    Toggle("启动时自动连接", isOn: $autoConnect)
-                        .onChange(of: autoConnect) { _ in
-                            // 保存设置
+                    Toggle("开启灵动岛", isOn: Binding(
+                        get: {return settings.enableLinkActivity},
+                        set: {newValue in
+                            if(newValue == false) {
+                                settings.enableLinkActivity = false
+                                clashActivityManager.endActivity()
+                            }else{
+                                clashActivityManager.checkLocationPermssion { status in
+                                    if status == .authorizedAlways {
+                                        clashActivityManager.startActivity()
+                                        settings.enableLinkActivity = true
+                                    } else {
+                                        clashActivityManager.endActivity()
+                                        settings.enableLinkActivity = false
+                                    }
+                                }
+                            }
+                           
                         }
+                    ))
                     
                     HStack {
                         Text("当前模式")
@@ -38,54 +56,10 @@ struct SettingsView: View {
                             Circle()
                                 .fill(statusColor)
                                 .frame(width: 8, height: 8)
-                            Text(clashService.proxyStatus.displayName)
+                            Text(vpnManager.connect.displayName)
                                 .foregroundColor(.secondary)
                         }
                     }
-                }
-                
-                // 界面设置
-                Section("界面设置") {
-                    Toggle("深色模式", isOn: $darkMode)
-                        .onChange(of: darkMode) { _ in
-                            // 切换深色模式
-                        }
-                }
-                
-                // 流量统计
-                Section("流量统计") {
-                    HStack {
-                        Text("今日上传")
-                        Spacer()
-                        Text(clashService.trafficStats.formatBytes(clashService.trafficStats.todayUploadBytes))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    HStack {
-                        Text("今日下载")
-                        Spacer()
-                        Text(clashService.trafficStats.formatBytes(clashService.trafficStats.todayDownloadBytes))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    HStack {
-                        Text("总上传")
-                        Spacer()
-                        Text(clashService.trafficStats.formatBytes(clashService.trafficStats.uploadBytes))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    HStack {
-                        Text("总下载")
-                        Spacer()
-                        Text(clashService.trafficStats.formatBytes(clashService.trafficStats.downloadBytes))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Button("清空今日流量") {
-                        clashService.clearTodayTraffic()
-                    }
-                    .foregroundColor(.red)
                 }
                 
                 // 关于
@@ -100,12 +74,6 @@ struct SettingsView: View {
                     Button("关于 ClashR") {
                         showingAbout = true
                     }
-                    
-                    Button("GitHub 项目") {
-                        if let url = URL(string: "https://github.com/your-username/ClashR") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
                 }
             }
             .navigationTitle("设置")
@@ -116,7 +84,7 @@ struct SettingsView: View {
     }
     
     private var statusColor: Color {
-        switch clashService.proxyStatus {
+        switch vpnManager.connect {
         case .disconnected: return .gray
         case .connecting: return .orange
         case .connected: return .green
@@ -139,7 +107,7 @@ struct AboutView: View {
                             .font(.system(size: 80))
                             .foregroundColor(.blue)
                         
-                        Text("ClashR")
+                        Text("Clash")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         
@@ -167,28 +135,6 @@ struct AboutView: View {
                         FeatureRow(icon: "doc.text.fill", title: "配置管理", description: "导入和管理配置文件")
                         FeatureRow(icon: "link", title: "订阅功能", description: "支持订阅链接自动更新")
                         FeatureRow(icon: "network", title: "节点选择", description: "多节点管理和延迟测试")
-                        FeatureRow(icon: "chart.bar.fill", title: "流量监控", description: "实时流量统计和监控")
-                        FeatureRow(icon: "doc.text.magnifyingglass", title: "日志查看", description: "实时日志输出和过滤")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    // 开源声明
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("开源声明")
-                            .font(.headline)
-                        
-                        Text("本项目基于开源 Clash 内核开发，遵循开源协议。")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                        
-                        Text("项目地址: https://github.com/your-username/ClashR")
-                            .font(.caption)
-                            .foregroundColor(.blue)
-                            .onTapGesture {
-                                if let url = URL(string: "https://github.com/your-username/ClashR") {
-                                    UIApplication.shared.open(url)
-                                }
-                            }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
@@ -238,5 +184,6 @@ struct FeatureRow: View {
 
 #Preview {
     SettingsView()
-        .environmentObject(ClashService())
+        .environmentObject(ClashService.share)
+        .environmentObject(VPNManager.share)
 }

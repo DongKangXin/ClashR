@@ -2,169 +2,345 @@
 //  LogView.swift
 //  ClashR
 //
-//  Created by 董康鑫 on 2025/10/1.
+//  Created by 董康鑫 on 2025/10/5.
 //
 
 import SwiftUI
 
-/// 日志查看页面
+/// 日志页面视图
 struct LogView: View {
-    @EnvironmentObject var clashService: ClashService
-    @State private var scrollToBottom = false
     
-    // 过滤后的日志
-    private var filteredLogs: [LogEntry] {
-        clashService.logs.filter { log in
-            clashService.selectedLogLevel == .info || log.level == clashService.selectedLogLevel
-        }
-    }
+    @StateObject private var apiService = ClashAPIService.shared
+    @State private var selectedLogLevel: LogLevel = .info
+    @State private var isAutoScroll = true
+    @State private var searchText = ""
+    
+    @State private var showLogSheet = false
+    
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
-                // 日志级别过滤器
-                LogLevelFilter()
-                    .environmentObject(clashService)
-                
-                Divider()
-                
                 // 日志列表
-                ScrollViewReader { proxy in
-                    ScrollView {
-                        LazyVStack(alignment: .leading, spacing: 4) {
-                            ForEach(filteredLogs) { log in
-                                LogEntryView(log: log)
-                                    .id(log.id)
-                            }
-                        }
-                        .padding()
-                    }
-                    .onChange(of: clashService.logs.count) { _ in
-                        if let lastLog = clashService.logs.last {
-                            withAnimation(.easeInOut(duration: 0.3)) {
-                                proxy.scrollTo(lastLog.id, anchor: .bottom)
-                            }
-                        }
-                    }
-                }
-                
-                // 底部操作栏
-                LogActionBar()
-                    .environmentObject(clashService)
+                logListView
             }
             .navigationTitle("日志")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("清空日志") {
+                            apiService.clearLogs()
+                        }
+                        
+                        
+                        Button("重启内核") {
+                            Task {
+                                try? await apiService.restart()
+                            }
+                        }
+                        Button("查看日志文件") {
+                            withAnimation {
+                                showLogSheet.toggle()
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    LogLevelSelector(
+                        selectedLevel: $selectedLogLevel,
+                        isCompact: true
+                    )
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                }
+            }
+            .sheet(isPresented: $showLogSheet) {
+                LogViewSheet(isPresented: $showLogSheet)
+            }
         }
     }
-}
 
-/// 日志级别过滤器
-struct LogLevelFilter: View {
-    @EnvironmentObject var clashService: ClashService
     
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(LogLevel.allCases, id: \.self) { level in
-                    Button(action: {
-                        clashService.selectedLogLevel = level
-                    }) {
-                        Text(level.rawValue)
-                            .font(.caption)
-                            .foregroundColor(clashService.selectedLogLevel == level ? .white : .primary)
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 6)
-                            .background(clashService.selectedLogLevel == level ? Color.blue : Color(.systemGray6))
-                            .cornerRadius(16)
+    // MARK: - Log List View
+    
+    private var logListView: some View {
+        ScrollViewReader { proxy in
+            List(filteredLogs) { log in
+                LogRowView(log: log)
+                    .id(log.id)
+            }
+            .onChange(of: apiService.logs.count) { _ in
+                if isAutoScroll && !apiService.logs.isEmpty {
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        proxy.scrollTo(apiService.logs.last?.id, anchor: .bottom)
                     }
                 }
             }
-            .padding(.horizontal)
         }
-        .padding(.vertical, 8)
+    }
+    
+    // MARK: - Computed Properties
+    
+    private var filteredLogs: [ClashLogEntry] {
+        var logs = apiService.logs
+        
+        // 按日志级别过滤
+        if selectedLogLevel != .all {
+            logs = logs.filter { log in
+                log.type.lowercased() == selectedLogLevel.rawValue.lowercased()
+            }
+        }
+        
+        // 按搜索文本过滤
+        if !searchText.isEmpty {
+            logs = logs.filter { log in
+                log.payload.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+        
+        return logs
     }
 }
 
-/// 日志条目视图
-struct LogEntryView: View {
-    let log: LogEntry
+// MARK: - Log Row View
+
+struct LogRowView: View {
+    let log: ClashLogEntry
     
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
-            // 时间戳
-            Text(log.timestamp.formatted(date: .omitted, time: .standard))
-                .font(.system(.caption, design: .monospaced))
-                .foregroundColor(.secondary)
-                .frame(width: 80, alignment: .leading)
-            
-            // 日志级别
-            Text(log.level.rawValue)
-                .font(.system(.caption, design: .monospaced))
-                .foregroundColor(.white)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(levelColor(log.level))
-                .cornerRadius(4)
-                .frame(width: 50, alignment: .center)
+        VStack(alignment: .leading, spacing: 4) {
+            // 时间戳和日志级别
+            HStack {
+                Text(formatTime(log.time))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                LogLevelBadge(level: log.type)
+            }
             
             // 日志内容
-            Text(log.message)
-                .font(.system(.caption, design: .monospaced))
-                .foregroundColor(.primary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
+            Text(log.payload)
+                .font(.system(.body, design: .monospaced))
+                .foregroundColor(logColor(for: log.type))
+                .lineLimit(nil)
         }
         .padding(.vertical, 2)
     }
     
-    private func levelColor(_ level: LogLevel) -> Color {
-        switch level {
-        case .info: return .blue
-        case .warn: return .orange
-        case .error: return .red
-        case .debug: return .gray
+    private func formatTime(_ time: Date) -> String {
+        // 解析时间字符串并格式化
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yy-MM-dd HH:mm:ss"
+        return formatter.string(from: time)
+       
+    }
+    
+    private func logColor(for level: String) -> Color {
+        switch level.lowercased() {
+        case "error":
+            return .red
+        case "warning":
+            return .orange
+        case "info":
+            return .primary
+        case "debug":
+            return .blue
+        default:
+            return .primary
         }
     }
 }
 
-/// 日志操作栏
-struct LogActionBar: View {
-    @EnvironmentObject var clashService: ClashService
-    @State private var showingClearAlert = false
+// MARK: - Log Level Badge
+
+struct LogLevelBadge: View {
+    let level: String
     
     var body: some View {
-        HStack {
-            Text("共 \(clashService.logs.count) 条日志")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            Spacer()
-            
-            Button(action: {
-                showingClearAlert = true
-            }) {
-                HStack {
-                    Image(systemName: "trash")
-                    Text("清空")
-                }
-                .font(.caption)
-                .foregroundColor(.red)
-            }
+        Text(level.uppercased())
+            .font(.caption2)
+            .fontWeight(.semibold)
+            .padding(.horizontal, 6)
+            .padding(.vertical, 2)
+            .background(backgroundColor)
+            .foregroundColor(foregroundColor)
+            .cornerRadius(4)
+    }
+    
+    private var backgroundColor: Color {
+        switch level.lowercased() {
+        case "error":
+            return .red.opacity(0.2)
+        case "warning":
+            return .orange.opacity(0.2)
+        case "info":
+            return .blue.opacity(0.2)
+        case "debug":
+            return .green.opacity(0.2)
+        default:
+            return .gray.opacity(0.2)
         }
-        .padding()
-        .background(Color(.systemBackground))
-        .alert("清空日志", isPresented: $showingClearAlert) {
-            Button("取消", role: .cancel) { }
-            Button("清空", role: .destructive) {
-                clashService.clearLogs()
-            }
-        } message: {
-            Text("确定要清空所有日志吗？此操作不可撤销。")
+    }
+    
+    private var foregroundColor: Color {
+        switch level.lowercased() {
+        case "error":
+            return .red
+        case "warning":
+            return .orange
+        case "info":
+            return .blue
+        case "debug":
+            return .green
+        default:
+            return .gray
         }
     }
 }
 
-#Preview {
-    LogView()
-        .environmentObject(ClashService())
+// 日志级别选择器组件
+struct LogLevelSelector: View {
+    @Binding var selectedLevel: LogLevel
+    let isCompact: Bool
+    
+    var body: some View {
+        if isCompact {
+            Menu {
+                ForEach(LogLevel.allCases, id: \.displayName) { level in
+                    Button() {
+                        selectedLevel = level
+                    } label:{
+                        Image(systemName: level.icon)
+                            .foregroundColor(level.color)
+                            .contentShape(Rectangle()) // 确保整个区域可点击
+                        // 使用更短的文字
+                        Text(level.displayName) // 比如 "全部" → "全"
+                            .font(.subheadline)
+                    
+                    }
+                }
+            } label: {
+                Image(systemName: selectedLevel.icon)
+                    .foregroundColor(selectedLevel.color)
+            }.tint(.primary) 
+        } else {
+            // 完整模式：底部工具栏样式
+            VStack(spacing: 8) {
+                Picker("日志级别", selection: $selectedLevel) {
+                    ForEach(LogLevel.allCases,id: \.displayName) { level in
+                        Text(level.rawValue)
+                            .tag(level)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .frame(maxWidth: .infinity)
+            }
+            .background(Color(.systemGroupedBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+    }
+}
+
+struct LogViewSheet: View {
+    @EnvironmentObject var clashManager: ClashManager
+    @Environment(\.dismiss) var dismiss
+    @Binding var isPresented: Bool
+    
+    @State private var logContent: String = ""
+    @State private var isLoading = false
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                // 日志内容
+                if isLoading {
+                    VStack {
+                        ProgressView()
+                        Text("加载中...")
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if logContent.isEmpty {
+                    VStack(spacing: 12) {
+                        Image(systemName: "doc.text.fill")
+                            .font(.system(size: 48))
+                            .foregroundColor(.gray.opacity(0.5))
+                        Text("暂无日志")
+                            .foregroundColor(.gray)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ScrollView {
+                        Text(logContent)
+                            .font(.system(.caption, design: .monospaced))
+                            .foregroundColor(.primary)
+                            .textSelection(.enabled)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+            .navigationTitle("日志")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { loadLogs() }) {
+                        if isLoading {
+                            ProgressView()
+                                .scaleEffect(0.8)
+                        } else {
+                            Label("刷新", systemImage: "arrow.clockwise")
+                        }
+                    }
+                    .disabled(isLoading)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("关闭") {
+                        dismiss()
+                    }
+                }
+            }
+            .onAppear {
+                loadLogs()
+            }
+        }
+    }
+    
+    private func loadLogs() {
+        isLoading = true
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.3) {
+            do {
+                let content = try clashManager.readLogFile()
+                
+                DispatchQueue.main.async {
+                    logContent = content
+                    isLoading = false
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    logContent = "读取日志失败: \(error.localizedDescription)"
+                    isLoading = false
+                }
+            }
+        }
+    }
+    
+    private func clearLogs() {
+        
+    }
+}
+
+
+// MARK: - Preview
+
+struct LogView_Previews: PreviewProvider {
+    static var previews: some View {
+        LogView()
+    }
 }

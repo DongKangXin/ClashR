@@ -7,74 +7,342 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04207E4F2E9FF2E100FB669D /* Tun2SocksKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04207E4E2E9FF2E100FB669D /* Tun2SocksKit */; };
+		04207E512E9FF2E100FB669D /* Tun2SocksKitC in Frameworks */ = {isa = PBXBuildFile; productRef = 04207E502E9FF2E100FB669D /* Tun2SocksKitC */; };
+		04488FD62E900F05007CFBEF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04488FD52E900F05007CFBEF /* NetworkExtension.framework */; };
+		04488FDE2E900F05007CFBEF /* clash-tunnel.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 04488FD32E900F05007CFBEF /* clash-tunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04488FE42E900F7F007CFBEF /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04488FD52E900F05007CFBEF /* NetworkExtension.framework */; };
+		044894EE2EBF3AD500A33302 /* MihomoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 044894ED2EBF3AD500A33302 /* MihomoKit */; };
+		044894F02EBF3B0E00A33302 /* MihomoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 044894EF2EBF3B0E00A33302 /* MihomoKit */; };
 		04D01E032E8CC121002270F4 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 04D01E022E8CC121002270F4 /* Yams */; };
+		04FDAF4F2EAA66050020EC66 /* ClashCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FDAF472EAA66050020EC66 /* ClashCore.framework */; };
+		04FDAF502EAA66050020EC66 /* ClashCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 04FDAF472EAA66050020EC66 /* ClashCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		04FDAF542EAA664B0020EC66 /* ClashCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FDAF472EAA66050020EC66 /* ClashCore.framework */; };
+		04FDAFA22EAA722F0020EC66 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FDAFA12EAA722F0020EC66 /* WidgetKit.framework */; };
+		04FDAFA42EAA722F0020EC66 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FDAFA32EAA722F0020EC66 /* SwiftUI.framework */; };
+		04FDAFB52EAA72300020EC66 /* ClashActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 04FDAFA02EAA722F0020EC66 /* ClashActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04FDAFE22EAA94590020EC66 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 04FDAFE12EAA94590020EC66 /* Yams */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		04488FDC2E900F05007CFBEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D01DCF2E8CB6DB002270F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04488FD22E900F05007CFBEF;
+			remoteInfo = "clash-tunnel";
+		};
+		04FDAF4D2EAA66050020EC66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D01DCF2E8CB6DB002270F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04FDAF462EAA66050020EC66;
+			remoteInfo = ClashCore;
+		};
+		04FDAF562EAA664B0020EC66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D01DCF2E8CB6DB002270F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04FDAF462EAA66050020EC66;
+			remoteInfo = ClashCore;
+		};
+		04FDAFB32EAA72300020EC66 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04D01DCF2E8CB6DB002270F4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04FDAF9F2EAA722F0020EC66;
+			remoteInfo = ClashActivityExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04488FE32E900F05007CFBEF /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				04488FDE2E900F05007CFBEF /* clash-tunnel.appex in Embed Foundation Extensions */,
+				04FDAFB52EAA72300020EC66 /* ClashActivityExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04488FFB2E90E802007CFBEF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				04FDAF502EAA66050020EC66 /* ClashCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		04D01DD72E8CB6DB002270F4 /* ClashR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClashR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04488FD32E900F05007CFBEF /* clash-tunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "clash-tunnel.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		04488FD52E900F05007CFBEF /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
+		0452D1ED2EA8D7B2005ADABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D01DD72E8CB6DB002270F4 /* ClashRocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClashRocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FDAF472EAA66050020EC66 /* ClashCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClashCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FDAFA02EAA722F0020EC66 /* ClashActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClashActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		04FDAFA12EAA722F0020EC66 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		04FDAFA32EAA722F0020EC66 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		04FDAFCC2EAA92340020EC66 /* ClashActivityExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClashActivityExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		04488FDF2E900F05007CFBEF /* Exceptions for "clash-tunnel" folder in "clash-tunnel" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 04488FD22E900F05007CFBEF /* clash-tunnel */;
+		};
+		04FDB08C2EAB467D0020EC66 /* Exceptions for "ClashActivity" folder in "ClashActivityExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 04FDAF9F2EAA722F0020EC66 /* ClashActivityExtension */;
+		};
+		04FDB0C32EAB51600020EC66 /* Exceptions for "ClashActivity" folder in "ClashRocket" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ClashActivityLiveActivity.swift,
+				SimpleChartView.swift,
+			);
+			target = 04D01DD62E8CB6DB002270F4 /* ClashRocket */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		04488FD72E900F05007CFBEF /* clash-tunnel */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				04488FDF2E900F05007CFBEF /* Exceptions for "clash-tunnel" folder in "clash-tunnel" target */,
+			);
+			path = "clash-tunnel";
+			sourceTree = "<group>";
+		};
 		04D01DD92E8CB6DB002270F4 /* ClashR */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ClashR;
 			sourceTree = "<group>";
 		};
+		04FDAF482EAA66050020EC66 /* ClashCore */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ClashCore;
+			sourceTree = "<group>";
+		};
+		04FDAFA52EAA722F0020EC66 /* ClashActivity */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				04FDB0C32EAB51600020EC66 /* Exceptions for "ClashActivity" folder in "ClashRocket" target */,
+				04FDB08C2EAB467D0020EC66 /* Exceptions for "ClashActivity" folder in "ClashActivityExtension" target */,
+			);
+			path = ClashActivity;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		04488FD02E900F05007CFBEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04207E4F2E9FF2E100FB669D /* Tun2SocksKit in Frameworks */,
+				04488FD62E900F05007CFBEF /* NetworkExtension.framework in Frameworks */,
+				044894EE2EBF3AD500A33302 /* MihomoKit in Frameworks */,
+				04207E512E9FF2E100FB669D /* Tun2SocksKitC in Frameworks */,
+				04FDAF542EAA664B0020EC66 /* ClashCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04D01DD42E8CB6DB002270F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				04D01E032E8CC121002270F4 /* Yams in Frameworks */,
+				04488FE42E900F7F007CFBEF /* NetworkExtension.framework in Frameworks */,
+				04FDAF4F2EAA66050020EC66 /* ClashCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF442EAA66050020EC66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				044894F02EBF3B0E00A33302 /* MihomoKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF9D2EAA722F0020EC66 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04FDAFA42EAA722F0020EC66 /* SwiftUI.framework in Frameworks */,
+				04FDAFE22EAA94590020EC66 /* Yams in Frameworks */,
+				04FDAFA22EAA722F0020EC66 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04488FD42E900F05007CFBEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04488FD52E900F05007CFBEF /* NetworkExtension.framework */,
+				04FDAFA12EAA722F0020EC66 /* WidgetKit.framework */,
+				04FDAFA32EAA722F0020EC66 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		04D01DCE2E8CB6DB002270F4 = {
 			isa = PBXGroup;
 			children = (
+				04FDAFCC2EAA92340020EC66 /* ClashActivityExtension.entitlements */,
 				04D01DD92E8CB6DB002270F4 /* ClashR */,
+				04488FD72E900F05007CFBEF /* clash-tunnel */,
+				04FDAF482EAA66050020EC66 /* ClashCore */,
+				04FDAFA52EAA722F0020EC66 /* ClashActivity */,
+				04488FD42E900F05007CFBEF /* Frameworks */,
 				04D01DD82E8CB6DB002270F4 /* Products */,
+				0452D1ED2EA8D7B2005ADABA /* Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
 		04D01DD82E8CB6DB002270F4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04D01DD72E8CB6DB002270F4 /* ClashR.app */,
+				04D01DD72E8CB6DB002270F4 /* ClashRocket.app */,
+				04488FD32E900F05007CFBEF /* clash-tunnel.appex */,
+				04FDAF472EAA66050020EC66 /* ClashCore.framework */,
+				04FDAFA02EAA722F0020EC66 /* ClashActivityExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		04FDAF422EAA66050020EC66 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		04D01DD62E8CB6DB002270F4 /* ClashR */ = {
+		04488FD22E900F05007CFBEF /* clash-tunnel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 04D01DE22E8CB6DB002270F4 /* Build configuration list for PBXNativeTarget "ClashR" */;
+			buildConfigurationList = 04488FE02E900F05007CFBEF /* Build configuration list for PBXNativeTarget "clash-tunnel" */;
+			buildPhases = (
+				04488FCF2E900F05007CFBEF /* Sources */,
+				04488FD02E900F05007CFBEF /* Frameworks */,
+				04488FD12E900F05007CFBEF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04FDAF572EAA664B0020EC66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				04488FD72E900F05007CFBEF /* clash-tunnel */,
+				04FDAF482EAA66050020EC66 /* ClashCore */,
+			);
+			name = "clash-tunnel";
+			packageProductDependencies = (
+				04207E4E2E9FF2E100FB669D /* Tun2SocksKit */,
+				04207E502E9FF2E100FB669D /* Tun2SocksKitC */,
+				044894ED2EBF3AD500A33302 /* MihomoKit */,
+			);
+			productName = "clash-tunnel";
+			productReference = 04488FD32E900F05007CFBEF /* clash-tunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		04D01DD62E8CB6DB002270F4 /* ClashRocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D01DE22E8CB6DB002270F4 /* Build configuration list for PBXNativeTarget "ClashRocket" */;
 			buildPhases = (
 				04D01DD32E8CB6DB002270F4 /* Sources */,
 				04D01DD42E8CB6DB002270F4 /* Frameworks */,
 				04D01DD52E8CB6DB002270F4 /* Resources */,
+				04488FE32E900F05007CFBEF /* Embed Foundation Extensions */,
+				04488FFB2E90E802007CFBEF /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04488FDD2E900F05007CFBEF /* PBXTargetDependency */,
+				04FDAF4E2EAA66050020EC66 /* PBXTargetDependency */,
+				04FDAFB42EAA72300020EC66 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				04D01DD92E8CB6DB002270F4 /* ClashR */,
+				04FDAF482EAA66050020EC66 /* ClashCore */,
+			);
+			name = ClashRocket;
+			packageProductDependencies = (
+				04D01E022E8CC121002270F4 /* Yams */,
+			);
+			productName = ClashR;
+			productReference = 04D01DD72E8CB6DB002270F4 /* ClashRocket.app */;
+			productType = "com.apple.product-type.application";
+		};
+		04FDAF462EAA66050020EC66 /* ClashCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FDAF532EAA66050020EC66 /* Build configuration list for PBXNativeTarget "ClashCore" */;
+			buildPhases = (
+				04FDAF422EAA66050020EC66 /* Headers */,
+				04FDAF432EAA66050020EC66 /* Sources */,
+				04FDAF442EAA66050020EC66 /* Frameworks */,
+				04FDAF452EAA66050020EC66 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				04D01DD92E8CB6DB002270F4 /* ClashR */,
+				04FDAF482EAA66050020EC66 /* ClashCore */,
 			);
-			name = ClashR;
+			name = ClashCore;
 			packageProductDependencies = (
-				04D01E022E8CC121002270F4 /* Yams */,
+				044894EF2EBF3B0E00A33302 /* MihomoKit */,
 			);
-			productName = ClashR;
-			productReference = 04D01DD72E8CB6DB002270F4 /* ClashR.app */;
-			productType = "com.apple.product-type.application";
+			productName = ClashCore;
+			productReference = 04FDAF472EAA66050020EC66 /* ClashCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		04FDAF9F2EAA722F0020EC66 /* ClashActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04FDAFB72EAA72300020EC66 /* Build configuration list for PBXNativeTarget "ClashActivityExtension" */;
+			buildPhases = (
+				04FDAF9C2EAA722F0020EC66 /* Sources */,
+				04FDAF9D2EAA722F0020EC66 /* Frameworks */,
+				04FDAF9E2EAA722F0020EC66 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				04FDAF482EAA66050020EC66 /* ClashCore */,
+				04FDAFA52EAA722F0020EC66 /* ClashActivity */,
+			);
+			name = ClashActivityExtension;
+			packageProductDependencies = (
+				04FDAFE12EAA94590020EC66 /* Yams */,
+			);
+			productName = ClashActivityExtension;
+			productReference = 04FDAFA02EAA722F0020EC66 /* ClashActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -86,7 +354,16 @@
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					04488FD22E900F05007CFBEF = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
 					04D01DD62E8CB6DB002270F4 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					04FDAF462EAA66050020EC66 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+					04FDAF9F2EAA722F0020EC66 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
@@ -102,19 +379,45 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				04D01E012E8CC121002270F4 /* XCRemoteSwiftPackageReference "Yams" */,
+				04207E4D2E9FF2AF00FB669D /* XCRemoteSwiftPackageReference "Tun2SocksKit" */,
+				044894EC2EBF3A8A00A33302 /* XCRemoteSwiftPackageReference "MihomoKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 04D01DD82E8CB6DB002270F4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				04D01DD62E8CB6DB002270F4 /* ClashR */,
+				04D01DD62E8CB6DB002270F4 /* ClashRocket */,
+				04488FD22E900F05007CFBEF /* clash-tunnel */,
+				04FDAF462EAA66050020EC66 /* ClashCore */,
+				04FDAF9F2EAA722F0020EC66 /* ClashActivityExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		04488FD12E900F05007CFBEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04D01DD52E8CB6DB002270F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF452EAA66050020EC66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF9E2EAA722F0020EC66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -124,7 +427,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		04488FCF2E900F05007CFBEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04D01DD32E8CB6DB002270F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF432EAA66050020EC66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04FDAF9C2EAA722F0020EC66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -133,7 +457,88 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		04488FDD2E900F05007CFBEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04488FD22E900F05007CFBEF /* clash-tunnel */;
+			targetProxy = 04488FDC2E900F05007CFBEF /* PBXContainerItemProxy */;
+		};
+		04FDAF4E2EAA66050020EC66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04FDAF462EAA66050020EC66 /* ClashCore */;
+			targetProxy = 04FDAF4D2EAA66050020EC66 /* PBXContainerItemProxy */;
+		};
+		04FDAF572EAA664B0020EC66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04FDAF462EAA66050020EC66 /* ClashCore */;
+			targetProxy = 04FDAF562EAA664B0020EC66 /* PBXContainerItemProxy */;
+		};
+		04FDAFB42EAA72300020EC66 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04FDAF9F2EAA722F0020EC66 /* ClashActivityExtension */;
+			targetProxy = 04FDAFB32EAA72300020EC66 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		04488FE12E900F05007CFBEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "clash-tunnel/clash_tunnel.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "clash-tunnel/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "clash-tunnel";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sakura.clash.clash-tunnel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04488FE22E900F05007CFBEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "clash-tunnel/clash_tunnel.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "clash-tunnel/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "clash-tunnel";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sakura.clash.clash-tunnel";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		04D01DE02E8CB6DB002270F4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -169,6 +574,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 8XJ2BJV58U;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -192,6 +598,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -232,6 +639,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 8XJ2BJV58U;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -248,6 +656,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -258,22 +667,36 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClashRocket.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8XJ2BJV58U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clash;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "需要在后台获取位置信息以更新网络";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "需要在后台持续获取位置信息以更新网络";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "需要获取定位信息以更新网络";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.ClashR;
+				MARKETING_VERSION = 1.1;
+				"MARKETING_VERSION[sdk=iphoneos*]" = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -289,22 +712,35 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ClashRocket.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8XJ2BJV58U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Clash;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "需要在后台获取位置信息以更新网络";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "需要在后台持续获取位置信息以更新网络";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "需要获取定位信息以更新网络";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.ClashR;
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -315,9 +751,164 @@
 			};
 			name = Release;
 		};
+		04FDAF512EAA66050020EC66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash.ClashCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		04FDAF522EAA66050020EC66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash.ClashCore;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		04FDAFB82EAA72300020EC66 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ClashActivityExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClashActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClashActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash.ClashActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04FDAFB92EAA72300020EC66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ClashActivityExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ClashActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ClashActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sakura.clash.ClashActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04488FE02E900F05007CFBEF /* Build configuration list for PBXNativeTarget "clash-tunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04488FE12E900F05007CFBEF /* Debug */,
+				04488FE22E900F05007CFBEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04D01DD22E8CB6DB002270F4 /* Build configuration list for PBXProject "ClashR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -327,7 +918,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		04D01DE22E8CB6DB002270F4 /* Build configuration list for PBXNativeTarget "ClashR" */ = {
+		04D01DE22E8CB6DB002270F4 /* Build configuration list for PBXNativeTarget "ClashRocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				04D01DE32E8CB6DB002270F4 /* Debug */,
@@ -336,9 +927,43 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		04FDAF532EAA66050020EC66 /* Build configuration list for PBXNativeTarget "ClashCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FDAF512EAA66050020EC66 /* Debug */,
+				04FDAF522EAA66050020EC66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04FDAFB72EAA72300020EC66 /* Build configuration list for PBXNativeTarget "ClashActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04FDAFB82EAA72300020EC66 /* Debug */,
+				04FDAFB92EAA72300020EC66 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04207E4D2E9FF2AF00FB669D /* XCRemoteSwiftPackageReference "Tun2SocksKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DongKangXin/Tun2SocksKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		044894EC2EBF3A8A00A33302 /* XCRemoteSwiftPackageReference "MihomoKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DongKangXin/MihomoKit";
+			requirement = {
+				branch = v1.0.1;
+				kind = branch;
+			};
+		};
 		04D01E012E8CC121002270F4 /* XCRemoteSwiftPackageReference "Yams" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jpsim/Yams.git";
@@ -350,7 +975,32 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04207E4E2E9FF2E100FB669D /* Tun2SocksKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04207E4D2E9FF2AF00FB669D /* XCRemoteSwiftPackageReference "Tun2SocksKit" */;
+			productName = Tun2SocksKit;
+		};
+		04207E502E9FF2E100FB669D /* Tun2SocksKitC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04207E4D2E9FF2AF00FB669D /* XCRemoteSwiftPackageReference "Tun2SocksKit" */;
+			productName = Tun2SocksKitC;
+		};
+		044894ED2EBF3AD500A33302 /* MihomoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 044894EC2EBF3A8A00A33302 /* XCRemoteSwiftPackageReference "MihomoKit" */;
+			productName = MihomoKit;
+		};
+		044894EF2EBF3B0E00A33302 /* MihomoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 044894EC2EBF3A8A00A33302 /* XCRemoteSwiftPackageReference "MihomoKit" */;
+			productName = MihomoKit;
+		};
 		04D01E022E8CC121002270F4 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04D01E012E8CC121002270F4 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		04FDAFE12EAA94590020EC66 /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04D01E012E8CC121002270F4 /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;

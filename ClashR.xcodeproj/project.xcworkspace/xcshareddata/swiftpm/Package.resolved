@@ -1,6 +1,24 @@
 {
-  "originHash" : "00fc82b0de716b0b6fae8646fae1c289e5b4679f93a4b0a9aca7e47cd71f9315",
+  "originHash" : "f86c43f8aef185bd887d55b7e2e1246370cb32edfecf3a29080b9508cc78623f",
   "pins" : [
+    {
+      "identity" : "mihomokit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DongKangXin/MihomoKit",
+      "state" : {
+        "branch" : "v1.0.1",
+        "revision" : "414abeef77d432592c0c80607ced24785ebd85a8"
+      }
+    },
+    {
+      "identity" : "tun2sockskit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DongKangXin/Tun2SocksKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "04e607172ac03a728f74dc08e1f0a737cb0528d4"
+      }
+    },
     {
       "identity" : "yams",
       "kind" : "remoteSourceControl",

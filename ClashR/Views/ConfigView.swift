@@ -7,181 +7,222 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import Yams
 
 /// 配置管理页面
 struct ConfigView: View {
-    @EnvironmentObject var configManager: ConfigManager
-    @State private var showingFileImporter = false
-    @State private var showingAddConfig = false
+    @EnvironmentObject var clashManager : ClashManager
+    @EnvironmentObject var settings : Settings
+    @State private var showingImportAlert = false
+    @State private var configInput = ""
+    @State private var showingEditConfig = false
+    @State private var showingEditYAML = false // 新增：直接编辑 YAML 的入口状态
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
-                ForEach(configManager.configs) { config in
-                    ConfigDetailRowView(config: config)
-                        .environmentObject(configManager)
+                // 基础配置
+                Section("基础配置") {
+                    Toggle("允许局域网", isOn: $clashManager.allowLan)
+                        .onSubmit {
+                            _ = clashManager.saveToFile()
+                        }
+                    Toggle("IPV6", isOn: $clashManager.ipv6)
+                        .onSubmit {
+                            _ = clashManager.saveToFile()
+                        }
+//                    TextEditRow(
+//                        title: "监听地址",
+//                        value: clashManager.bindAddress,
+//                        keyboardType: .decimalPad
+//                    ) { newValue in
+//                        clashManager.bindAddress = newValue
+//                        _ = clashManager.saveToFile()
+//                    }
+//                    
+//                    // ✅ 整数编辑
+//                    IntEditRow(
+//                        title: "混合端口",
+//                        value: clashManager.mixedPort,
+//                        range: 1...65535
+//                    ) { newValue in
+//                        clashManager.mixedPort = newValue
+//                        _ = clashManager.saveToFile()
+//                    }
+//                    // ✅ 一行搞定：显示 + 跳转 + 保存
+//                    SelectionEditRow(
+//                        title: "代理模式",
+//                        options: ["规则模式", "全局模式", "直连模式"],
+//                        values: ["rule", "global", "direct"],
+//                        currentValue: clashManager.mode,
+//                        onSelection: { newValue in
+//                            clashManager.mode = newValue
+//                            _ = clashManager.saveToFile()
+//                        }
+//                    )
+                    // ✅ 一行搞定：显示 + 跳转 + 保存
+                    SelectionEditRow(
+                        title: "日志等级",
+                        options: ["调试", "信息", "警告", "错误"],
+                        values: ["debug", "info", "warning","error"],
+                        currentValue: settings.logLevel,
+                        onSelection: { newValue in
+                            settings.logLevel = newValue
+                        }
+                    )
+//                    TextEditRow(
+//                        title: "外部控制器",
+//                        value: clashManager.externalController,
+//                        keyboardType: .decimalPad
+//                    ) { newValue in
+//                        clashManager.externalController = newValue
+//                        _ = clashManager.saveToFile()
+//                    }
                 }
-                .onDelete(perform: deleteConfigs)
+                
+                
+                // DNS配置
+                Section("DNS配置") {
+//                    Toggle("启用DNS", isOn: Binding(
+//                        get: { clashManager.getDNS().enable ?? true },
+//                        set: { newValue in
+//                            var dns = clashManager.getDNS()
+//                            dns.enable = newValue
+//                            clashManager.setDNS(dns)
+//                            _ = clashManager.saveToFile()
+//                        }
+//                    ))
+//                    Toggle("IPv6支持", isOn: Binding(
+//                        get: { clashManager.getDNS().ipv6 ?? true },
+//                        set: { newValue in
+//                            var dns = clashManager.getDNS()
+//                            dns.ipv6 = newValue
+//                            clashManager.setDNS(dns)
+//                            _ = clashManager.saveToFile()
+//                        }
+//                    ))
+//                    TextEditRow(
+//                        title: "默认DNS",
+//                        value: clashManager.getDNS().defaultNameserver?.joined(separator: ", ") ?? "223.5.5.5, 119.29.29.29" ,
+//                        keyboardType: .decimalPad
+//                    ) { newValue in
+//                        var dns = clashManager.getDNS()
+//                        dns.defaultNameserver = newValue.components(separatedBy: ",")
+//                            .map { $0.trimmingCharacters(in: .whitespaces) }
+//                            .filter { !$0.isEmpty }
+//                        clashManager.setDNS(dns)
+//                        _ = clashManager.saveToFile()
+//                    }
+//                    TextEditRow(
+//                        title: "Fake IP范围",
+//                        value: clashManager.getDNS().fakeIpRange ?? "198.18.0.1/16" ,
+//                        keyboardType: .decimalPad
+//                    ) { newValue in
+//                        var dns = clashManager.getDNS()
+//                        dns.fakeIpRange = newValue
+//                        clashManager.setDNS(dns)
+//                        _ = clashManager.saveToFile()
+//                    }
+//                    Toggle("使用Hosts", isOn: Binding(
+//                        get: { clashManager.getDNS().useHosts ?? true },
+//                        set: { newValue in
+//                            var dns = clashManager.getDNS()
+//                            dns.useHosts = newValue
+//                            clashManager.setDNS(dns)
+//                            _ = clashManager.saveToFile()
+//                        }
+//                    ))
+                    
+                    
+                }
+                
             }
             .navigationTitle("配置管理")
+            // 新增：YAML 编辑视图入口
+            .sheet(isPresented: $showingEditYAML) {
+                ConfigYAMLEditView()
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
-                        Button(action: {
-                            showingFileImporter = true
-                        }) {
-                            Label("导入配置文件", systemImage: "doc.badge.plus")
+                        Button("编辑YAML") {
+                            showingEditYAML = true
+                        }
+                        Button("恢复默认配置") {
+                            do {
+                                try clashManager.backDefault()
+                            }catch{
+                                
+                            }
                         }
                         
-                        Button(action: {
-                            showingAddConfig = true
-                        }) {
-                            Label("添加配置", systemImage: "plus")
-                        }
                     } label: {
-                        Image(systemName: "plus")
+                        Image(systemName: "ellipsis.circle")
                     }
                 }
             }
-            .fileImporter(
-                isPresented: $showingFileImporter,
-                allowedContentTypes: [UTType.yaml, UTType.text],
-                allowsMultipleSelection: false
-            ) { result in
-                handleFileImport(result)
-            }
-            .sheet(isPresented: $showingAddConfig) {
-                AddConfigView()
-                    .environmentObject(configManager)
-            }
-        }
-    }
-    
-    private func deleteConfigs(offsets: IndexSet) {
-        for index in offsets {
-            let config = configManager.configs[index]
-            try? configManager.deleteConfig(config)
-        }
-    }
-    
-    private func handleFileImport(_ result: Result<[URL], Error>) {
-        switch result {
-        case .success(let urls):
-            guard let url = urls.first else { return }
-            
-            // 获取文件名作为配置名称
-            let configName = url.lastPathComponent.replacingOccurrences(of: ".yaml", with: "")
-            
-            do {
-                _ = try configManager.importConfig(from: url, name: configName)
-            } catch {
-                print("导入配置失败: \(error)")
-            }
-            
-        case .failure(let error):
-            print("文件选择失败: \(error)")
         }
     }
 }
 
-/// 配置详情行视图
-struct ConfigDetailRowView: View {
-    let config: ClashConfig
-    @EnvironmentObject var configManager: ConfigManager
-    @State private var showingDeleteAlert = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Text(config.name)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Spacer()
-                
-                if config.isDefault {
-                    Text("默认")
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.blue)
-                        .cornerRadius(4)
-                }
-            }
-            
-            Text("创建时间: \(config.createdAt.formatted(date: .abbreviated, time: .shortened))")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            Text("更新时间: \(config.updatedAt.formatted(date: .abbreviated, time: .shortened))")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            
-            HStack {
-                Button("设为默认") {
-                    configManager.setDefaultConfig(config)
-                }
-                .font(.caption)
-                .foregroundColor(.blue)
-                
-                Spacer()
-                
-                Button("删除") {
-                    showingDeleteAlert = true
-                }
-                .font(.caption)
-                .foregroundColor(.red)
-            }
-        }
-        .padding(.vertical, 4)
-        .alert("删除配置", isPresented: $showingDeleteAlert) {
-            Button("取消", role: .cancel) { }
-            Button("删除", role: .destructive) {
-                try? configManager.deleteConfig(config)
-            }
-        } message: {
-            Text("确定要删除配置 \"\(config.name)\" 吗？此操作不可撤销。")
-        }
-    }
-}
 
-/// 添加配置视图
-struct AddConfigView: View {
-    @EnvironmentObject var configManager: ConfigManager
+
+// 直接编辑 YAML 的视图
+struct ConfigYAMLEditView: View {
+    @EnvironmentObject var clashManager: ClashManager
     @Environment(\.dismiss) private var dismiss
-    @State private var configName = ""
-    @State private var yamlContent = ""
+    
+    @State private var rawYAML: String = ""
     @State private var showingError = false
     @State private var errorMessage = ""
-    
+
     var body: some View {
         NavigationView {
-            Form {
-                Section("配置信息") {
-                    TextField("配置名称", text: $configName)
-                }
-                
-                Section("YAML配置") {
-                    TextEditor(text: $yamlContent)
-                        .frame(minHeight: 300)
-                }
+            VStack(spacing: 16) {
+                TextEditor(text: $rawYAML)
+                    .font(.system(.body, design: .monospaced))
+                    .padding(12)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(.systemGray4), lineWidth: 1)
+                    )
+
+                Text("保存将解析并校验 YAML，成功后实时写入到 config.yml")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+
+                Spacer()
             }
-            .navigationTitle("添加配置")
+            .padding()
+            .navigationTitle("编辑 YAML")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("取消") {
-                        dismiss()
-                    }
+                    Button("取消") { dismiss() }
                 }
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("保存") {
-                        saveConfig()
+                        do {
+                            _ = try clashManager.load(fromYAML: rawYAML)
+                            let res = clashManager.saveToFile()
+                            switch res {
+                            case .success:
+                                dismiss()
+                            case .failure(let err):
+                                errorMessage = "保存失败: \(err.localizedDescription)"
+                                showingError = true
+                            }
+                        } catch {
+                            errorMessage = "解析失败: \(error.localizedDescription)"
+                            showingError = true
+                        }
                     }
-                    .disabled(configName.isEmpty || yamlContent.isEmpty)
                 }
+            }
+            .onAppear {
+                rawYAML = (try? clashManager.toYAML()) ?? ""
             }
             .alert("错误", isPresented: $showingError) {
                 Button("确定") { }
@@ -190,19 +231,11 @@ struct AddConfigView: View {
             }
         }
     }
-    
-    private func saveConfig() {
-        do {
-            _ = try configManager.addSubscriptionConfig(name: configName, yamlContent: yamlContent)
-            dismiss()
-        } catch {
-            errorMessage = error.localizedDescription
-            showingError = true
-        }
-    }
 }
+
+
 
 #Preview {
     ConfigView()
-        .environmentObject(ConfigManager())
+        .environmentObject(ClashManager.share)
 }

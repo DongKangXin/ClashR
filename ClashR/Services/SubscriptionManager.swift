@@ -10,181 +10,168 @@ import Combine
 import Yams
 
 /// 订阅管理器
+@MainActor
 class SubscriptionManager: ObservableObject {
-    @Published var subscriptions: [Subscription] = []
+    private lazy var clashManager = ClashManager.share
+    private lazy var clashApiService = ClashAPIService.shared
+    private lazy var settings = Settings.shared
     
-    private let userDefaults = UserDefaults.standard
-    private var cancellables = Set<AnyCancellable>()
-    private var updateTimers: [UUID: Timer] = [:]
-    
-    // MARK: - Initialization
-    init() {
-        loadSubscriptions()
-        setupAutoUpdateTimers()
-    }
-    
-    deinit {
-        updateTimers.values.forEach { $0.invalidate() }
-    }
+
     
     // MARK: - Public Methods
     
+    func testProxy(_ proxy : ClashProxy) async {
+        do{
+            let delayInfo = try await clashApiService.testProxyDelay(proxyName: proxy.name)
+            settings.update(proxy){
+                pro in pro.delay = delayInfo.delay
+            }
+        }catch{
+            
+        }
+    }
+    
+    
+    func testSubscription(_ proxys: [ClashProxy]) async {
+        for proxy in proxys{
+            Task{
+                await testProxy(proxy)
+            }
+        }
+    }
+    
+    
+    func removeProxyNode(_ clashProxy: ClashProxy){
+        settings.delete(clashProxy)
+    }
+
     /// 添加订阅
     func addSubscription(name: String, url: String) {
         let subscription = Subscription(name: name, url: url)
-        subscriptions.append(subscription)
-        print("添加订阅: \(subscription.name), 总数: \(subscriptions.count)")
-        saveSubscriptions()
-        
-        // 立即更新一次
-        Task {
-            await updateSubscription(subscription)
-        }
+        settings.insert(subscription)
     }
-    
+
     /// 删除订阅
     func deleteSubscription(_ subscription: Subscription) {
-        subscriptions.removeAll { $0.id == subscription.id }
-        updateTimers[subscription.id]?.invalidate()
-        updateTimers.removeValue(forKey: subscription.id)
-        saveSubscriptions()
+        var nodes = settings.proxyNodes.filter{$0.subId == subscription.id}
+        settings.delete(nodes)
+        settings.delete(subscription)
     }
-    
+
     /// 更新订阅
-    func updateSubscription(_ subscription: Subscription) async {
-        guard let index = subscriptions.firstIndex(where: { $0.id == subscription.id }) else { return }
-        
+    func updateSubscription(_ subscription: Subscription) async ->[ClashProxy]  {
+
         do {
-            // 获取订阅内容
-            let yamlContent = try await fetchSubscriptionContent(url: subscription.url)
-            
-            // 验证YAML格式
-            _ = try Yams.load(yaml: yamlContent) as? [String: Any]
-            
-            // 更新订阅信息
-            subscriptions[index].lastUpdate = Date()
-            
-            // 保存到配置文件
-            let configManager = ConfigManager()
-            let config = try configManager.addSubscriptionConfig(name: subscription.name, yamlContent: yamlContent)
-            
-            // 保存订阅列表（这会触发UI更新）
-            saveSubscriptions()
+            let content = try await fetchSubscriptionContent(url: subscription.url)
+            // 解析订阅内容并更新配置
+            return parseClashProxy(content: content)
             
         } catch {
             print("更新订阅失败: \(error.localizedDescription)")
-            // 即使更新失败，也要保存订阅列表以更新UI
-            saveSubscriptions()
         }
+        return []
     }
     
-    /// 手动更新所有订阅
-    func updateAllSubscriptions() async {
-        for subscription in subscriptions where subscription.isEnabled {
-            await updateSubscription(subscription)
+
+    /// 解析订阅内容并更新配置
+    private func parseClashProxy(content: String) -> [ClashProxy] {
+        do {
+            // 尝试解析YAML格式
+            if let yamlConfig = try? Yams.load(yaml: content) as? [String: Any] {
+                return parseYAMLConfig(yamlConfig) ?? []
+            }
+            // 尝试解析JSON格式
+            else if let jsonData = content.data(using: .utf8),
+                    let jsonConfig = try? JSONSerialization.jsonObject(with: jsonData) as? [String: Any] {
+                return parseJSONConfig(jsonConfig) ?? []
+            }
+            else {
+                return []
+            }
+        } catch {
+            print("解析订阅内容失败: \(error.localizedDescription)")
         }
     }
-    
-    /// 切换订阅启用状态
-    func toggleSubscription(_ subscription: Subscription) {
-        guard let index = subscriptions.firstIndex(where: { $0.id == subscription.id }) else { return }
-        
-        subscriptions[index].isEnabled.toggle()
-        
-        if subscriptions[index].isEnabled {
-            setupAutoUpdateTimer(for: subscriptions[index])
-        } else {
-            updateTimers[subscription.id]?.invalidate()
-            updateTimers.removeValue(forKey: subscription.id)
-        }
-        
-        // 保存订阅列表（这会触发UI更新）
-        saveSubscriptions()
-    }
-    
-    /// 设置自动更新
-    func setAutoUpdate(_ subscription: Subscription, enabled: Bool, interval: TimeInterval) {
-        guard let index = subscriptions.firstIndex(where: { $0.id == subscription.id }) else { return }
-        
-        subscriptions[index].autoUpdate = enabled
-        subscriptions[index].updateInterval = interval
-        
-        if enabled {
-            setupAutoUpdateTimer(for: subscriptions[index])
-        } else {
-            updateTimers[subscription.id]?.invalidate()
-            updateTimers.removeValue(forKey: subscription.id)
-        }
-        
-        // 保存订阅列表（这会触发UI更新）
-        saveSubscriptions()
-    }
-    
-    // MARK: - Private Methods
-    
-    /// 加载订阅列表
-    private func loadSubscriptions() {
-        if let subscriptionsData = userDefaults.data(forKey: "ClashSubscriptions"),
-           let loadedSubscriptions = try? JSONDecoder().decode([Subscription].self, from: subscriptionsData) {
-            subscriptions = loadedSubscriptions
-        }
-    }
-    
-    /// 保存订阅列表
-    private func saveSubscriptions() {
-        if let subscriptionsData = try? JSONEncoder().encode(subscriptions) {
-            userDefaults.set(subscriptionsData, forKey: "ClashSubscriptions")
-            print("保存订阅列表: \(subscriptions.count) 个订阅")
-        }
-    }
-    
-    /// 设置自动更新定时器
-    private func setupAutoUpdateTimers() {
-        for subscription in subscriptions where subscription.isEnabled && subscription.autoUpdate {
-            setupAutoUpdateTimer(for: subscription)
-        }
-    }
-    
-    /// 为单个订阅设置自动更新定时器
-    private func setupAutoUpdateTimer(for subscription: Subscription) {
-        // 取消现有定时器
-        updateTimers[subscription.id]?.invalidate()
-        
-        // 创建新的定时器
-        let timer = Timer.scheduledTimer(withTimeInterval: subscription.updateInterval, repeats: true) { [weak self] _ in
-            Task {
-                await self?.updateSubscription(subscription)
+
+    /// 解析YAML配置
+    private func parseYAMLConfig(_ config: [String: Any]) -> [ClashProxy]?  {
+        var proxies: [ClashProxy] = []
+
+        // 解析proxies
+        if let proxiesArray = config["proxies"] as? [[String: Any]] {
+            for proxyDict in proxiesArray {
+                if(!["ss","hysteria2","trojan","vless","vmess"].contains(proxyDict["type"] as? String)){
+                    continue
+                }
+                if(["ss"].contains(proxyDict["cipher"] as? String)){
+                    continue
+                }
+                if let proxy = parseProxyFromDict(proxyDict) {
+                    proxies.append(proxy)
+                }
             }
         }
-        
-        updateTimers[subscription.id] = timer
+        return proxies;
     }
-    
+
+    /// 解析JSON配置
+    private func parseJSONConfig(_ config: [String: Any]) -> [ClashProxy]?  {
+        var proxies: [ClashProxy] = []
+
+        // 解析proxies
+        if let proxiesArray = config["proxies"] as? [[String: Any]] {
+            for proxyDict in proxiesArray {
+                if(!["ss","hysteria2","trojan","vless","vmess"].contains(proxyDict["type"] as? String)){
+                    continue
+                }
+                if(["ss"].contains(proxyDict["cipher"] as? String)){
+                    continue
+                }
+                if let proxy = parseProxyFromDict(proxyDict) {
+                    proxies.append(proxy)
+                }
+            }
+        }
+        return proxies;
+
+    }
+
+    /// 从字典解析代理节点
+    private func parseProxyFromDict(_ dict: [String: Any]) -> ClashProxy? {
+        return ClashProxy.fromDict(dict)
+    }
+
+    /// 从字典解析代理组
+    private func parseProxyGroupFromDict(_ dict: [String: Any]) -> ClashProxyGroup? {
+        ClashProxyGroup.fromDict(dict)
+    }
+
+
     /// 获取订阅内容
     private func fetchSubscriptionContent(url: String) async throws -> String {
         guard let url = URL(string: url) else {
             throw SubscriptionError.invalidURL
         }
-        
+
         let (data, response) = try await URLSession.shared.data(from: url)
-        
+
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw SubscriptionError.networkError
         }
-        
+
         // 尝试Base64解码
         if let base64String = String(data: data, encoding: .utf8),
            let decodedData = Data(base64Encoded: base64String),
            let decodedString = String(data: decodedData, encoding: .utf8) {
             return decodedString
         }
-        
+
         // 如果不是Base64编码，直接返回原始内容
         guard let content = String(data: data, encoding: .utf8) else {
             throw SubscriptionError.invalidContent
         }
-        
+
         return content
     }
 }
@@ -194,7 +181,7 @@ enum SubscriptionError: LocalizedError {
     case invalidURL
     case networkError
     case invalidContent
-    
+
     var errorDescription: String? {
         switch self {
         case .invalidURL:
