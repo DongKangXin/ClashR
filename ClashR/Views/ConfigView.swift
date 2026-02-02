@@ -167,7 +167,7 @@ struct ConfigView: View {
 
 
 
-// 直接编辑 YAML 的视图
+// 查看 YAML 的视图
 struct ConfigYAMLEditView: View {
     @EnvironmentObject var clashManager: ClashManager
     @Environment(\.dismiss) private var dismiss
@@ -196,33 +196,15 @@ struct ConfigYAMLEditView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("编辑 YAML")
+            .navigationTitle("查看 YAML")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("取消") { dismiss() }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("保存") {
-                        do {
-                            _ = try clashManager.load(fromYAML: rawYAML)
-                            let res = clashManager.saveToFile()
-                            switch res {
-                            case .success:
-                                dismiss()
-                            case .failure(let err):
-                                errorMessage = "保存失败: \(err.localizedDescription)"
-                                showingError = true
-                            }
-                        } catch {
-                            errorMessage = "解析失败: \(error.localizedDescription)"
-                            showingError = true
-                        }
-                    }
+                    Button("关闭") { dismiss() }
                 }
             }
             .onAppear {
-                rawYAML = (try? clashManager.toYAML()) ?? ""
+                rawYAML = (try? clashManager.readConfigFile()) ?? ""
             }
             .alert("错误", isPresented: $showingError) {
                 Button("确定") { }

@@ -681,6 +681,10 @@ public class ClashManager: ObservableObject {
         return FileUtils.readContentFromFile(subpath: "logs/clash.log") ?? ""
     }
     
+    func readConfigFile() -> String {
+        return unescapeYAMLEmoji(FileUtils.readContentFromFile(subpath: "config.yaml") ?? "")
+    }
+    
     func backDefault() throws {
         _ = FileUtils.copyFileFromBundle(fileName: "config.yaml", toSubpath: ClashManager.defaultFileName,force: true)
         self.loadFromFile()
