@@ -4,56 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86b688f9-b1b2-4f35-a506-b0c123d9fd19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ClashCore/DarwinNotificationListener.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClashCore/HttpClient.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClashCore/StreamClient.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClashR.xcodeproj/project.pbxproj.backup" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ClashR.xcodeproj/project.xcworkspace/xcuserdata/dongkangxin.xcuserdatad/Bookmarks/bookmarks.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.build/.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.build/.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashActivity/ClashActivity.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashActivity/ClashActivity.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashActivity/ClashActivityLiveActivity.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashActivity/ClashActivityLiveActivity.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashActivity/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ClashActivity/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashActivity/SimpleChartView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashActivity/SimpleChartView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashActivityExtension.entitlements" beforeDir="false" afterPath="$PROJECT_DIR$/ClashActivityExtension.entitlements" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashCore/ClashCore.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashCore/ClashCore.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashCore/SpeedFormatter.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashCore/SpeedFormatter.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashCore/ViewModels/ClashViewModel.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/project.xcworkspace/xcuserdata/dongkangxin.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/project.xcworkspace/xcuserdata/dongkangxin.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcschemes/ClashRocket.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcschemes/ClashRocket.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR.xcodeproj/xcuserdata/dongkangxin.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/AppDelegate.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/AppDelegate.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/ClashApp.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/ClashApp.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Components/SelectionEditRow.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/MainTabView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/MainTabView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Repositorys/Settings.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Repositorys/Settings.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/ClashAPIService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/ClashAPIService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/ClashActivityManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/ClashActivityManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/ClashManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/ClashManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/ClashService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/ClashService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/GlobalAlertManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/GlobalAlertManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/LocationManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/LocationManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/Models/ClashConfig.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/Models/ClashConfig.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/SubscriptionManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/SubscriptionManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Services/VPNManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Services/VPNManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Views/Components/ProxyControlCard.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Views/Components/ProxyControlCard.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Views/ConfigView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Views/ConfigView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Views/HomeView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Views/HomeView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Views/LogView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Views/LogView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClashR/Views/SettingsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/ClashR/Views/SettingsView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/config.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/geoip.metadb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Resources/reject.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clash-tunnel/ClashBridge.swift" beforeDir="false" afterPath="$PROJECT_DIR$/clash-tunnel/ClashBridge.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clash-tunnel/DarwinNotificationSender.swift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clash-tunnel/PacketTunnelProvider.swift" beforeDir="false" afterPath="$PROJECT_DIR$/clash-tunnel/PacketTunnelProvider.swift" afterDir="false" />
-    </list>
+    <list default="true" id="86b688f9-b1b2-4f35-a506-b0c123d9fd19" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,19 +34,18 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "OBJC.PRESERVED_TARGET_SELECTION": "ClashRocket",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/dongkangxin/Documents/project/swift/ClashR",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;OBJC.PRESERVED_TARGET_SELECTION&quot;: &quot;ClashRocket&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/dongkangxin/Documents/project/swift/ClashR&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ClashRocket" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ClashR" TARGET_NAME="ClashRocket" CONFIG_NAME="Debug" IS_LOCATION_SIMULATION_SUPPORTED="true" SCHEME_NAME="ClashRocket" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="ClashR" RUN_TARGET_NAME="ClashRocket" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
@@ -131,6 +81,7 @@
       <workItem from="1761284623969" duration="1802000" />
       <workItem from="1761490094420" duration="635000" />
       <workItem from="1762170803431" duration="3706000" />
+      <workItem from="1770708174585" duration="215000" />
     </task>
     <servers />
   </component>
