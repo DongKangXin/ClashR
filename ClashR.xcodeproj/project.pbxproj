@@ -677,9 +677,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clash;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "需要在后台获取位置信息以更新网络";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "需要在后台持续获取位置信息以更新网络";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "需要获取定位信息以更新网络";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -722,9 +720,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Clash;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "需要在后台获取位置信息以更新网络";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "需要在后台持续获取位置信息以更新网络";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "需要获取定位信息以更新网络";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_NSSupportsLiveActivitiesFrequentUpdates = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

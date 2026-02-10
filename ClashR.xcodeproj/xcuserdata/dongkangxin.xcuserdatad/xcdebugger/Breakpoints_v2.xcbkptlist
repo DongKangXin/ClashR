@@ -1565,22 +1565,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "17CE6700-BDB9-4C87-857C-7164C57D25C2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ClashR/Views/SettingsView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C40871C5-5481-486C-929F-E0EF59A97D14"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1642,28 +1626,28 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4CA4A6FA-8F30-42A9-8780-16711D582043 - 941d1c2547d2152f"
+                  uuid = "4CA4A6FA-8F30-42A9-8780-16711D582043 - a323037ed2c2e36"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "ClashRocket.SubscriptionManager.deleteSubscription(ClashRocket.Subscription) -&gt; ()"
                   moduleName = "ClashRocket.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dongkangxin/Documents/ClashR/ClashR/Services/SubscriptionManager.swift"
+                  urlString = "file:///Users/dongkangxin/Documents/project/swift/ClashR/ClashR/Services/SubscriptionManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
                   endingLineNumber = "56">
                </Location>
                <Location
-                  uuid = "4CA4A6FA-8F30-42A9-8780-16711D582043 - c794ad8947d68cae"
+                  uuid = "4CA4A6FA-8F30-42A9-8780-16711D582043 - 59bb819bed28b7b7"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (ClashRocket.ClashProxy) -&gt; Swift.Bool in ClashRocket.SubscriptionManager.deleteSubscription(ClashRocket.Subscription) -&gt; ()"
                   moduleName = "ClashRocket.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dongkangxin/Documents/ClashR/ClashR/Services/SubscriptionManager.swift"
+                  urlString = "file:///Users/dongkangxin/Documents/project/swift/ClashR/ClashR/Services/SubscriptionManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "56"
@@ -1814,6 +1798,52 @@
             endingLineNumber = "198"
             landmarkName = "fromDict(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1A925B5D-E46F-42CD-8509-1C01FF0A02AC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ClashR/Views/Components/ProxyControlCard.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "ProxyControlCard"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "1A925B5D-E46F-42CD-8509-1C01FF0A02AC - 195ae0d2d6c2b04f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ClashRocket.ProxyControlCard.init() -&gt; ClashRocket.ProxyControlCard"
+                  moduleName = "ClashRocket.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///var/folders/jn/yr1cjz_d3dqcvjldmy5jr3m80000gn/T/-c791f0.@__swiftmacro_11ClashRocket16ProxyControlCardV6proxys33_AD13227CF0091F33CD0CF7D1783B28F8LL5QueryfMp_.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1"
+                  endingLineNumber = "1">
+               </Location>
+               <Location
+                  uuid = "1A925B5D-E46F-42CD-8509-1C01FF0A02AC - 703d8aa82b6ddcd3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ClashRocket.ProxyControlCard.init(clashService: SwiftUI.EnvironmentObject&lt;ClashRocket.ClashService&gt;, clashManager: SwiftUI.EnvironmentObject&lt;ClashRocket.ClashManager&gt;, vpnManager: SwiftUI.EnvironmentObject&lt;ClashRocket.VPNManager&gt;, clashApiService: SwiftUI.EnvironmentObject&lt;ClashRocket.ClashAPIService&gt;, settings: SwiftUI.EnvironmentObject&lt;ClashRocket.Settings&gt;, _proxys: _SwiftData_SwiftUI.Query&lt;ClashRocket.ClashProxy, Swift.Array&lt;ClashRocket.ClashProxy&gt;&gt;) -&gt; ClashRocket.ProxyControlCard"
+                  moduleName = "ClashRocket.debug.dylib"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongkangxin/Documents/project/swift/ClashR/ClashR/Views/Components/ProxyControlCard.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

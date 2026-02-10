@@ -27,7 +27,9 @@ class ClashActivityManager : ObservableObject{
     private var speedHistory: ChartData = ChartData()
     
     func checkLocationPermssion(_ completion: @escaping (CLAuthorizationStatus) -> Void) {
-        return locationManager.requestAlwaysAuthorization(completion: completion )
+        //关闭了定位获取，永远返回true
+        return completion(.authorizedAlways)
+//        return locationManager.requestAlwaysAuthorization(completion: completion )
     }
     
     

@@ -21,7 +21,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     private var accuracyCompletion: ((CLAccuracyAuthorization) -> Void)?
     private override init() {
         super.init()
-        setupLocationManager()
+//        setupLocationManager()
     }
     
     // MARK: - 初始化定位管理器
